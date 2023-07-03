@@ -1,0 +1,21 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+  {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'form-signin' } }) }}
+
+
+      <div class="form-label-group">
+        {{ form_widget(form.plainPassword.first, { attr: { class: "form-control", placeholder: "Ingrese nueva contraseña" }}) }}
+        <label for="username">Ingrese nueva contraseña</label>
+      </div>
+
+      <div class="form-label-group">
+        {{ form_widget(form.plainPassword.second, { attr: { class: "form-control", placeholder: "Repita contraseña" }}) }}
+        <label >Repita contraseña</label>
+      </div>
+
+      <div>
+          <input type="submit" class="btn btn-lg btn-sm btn-outline-dark btn-block"  value="Restablecer contraseña" />
+      </div>
+  {{ form_end(form) }}
+{% endblock fos_user_content %}

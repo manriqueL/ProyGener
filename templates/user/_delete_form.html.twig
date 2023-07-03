@@ -1,0 +1,30 @@
+
+
+<form method="post" action="{{ path('user_delete', {'id': userId}) }}">
+
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+
+    <div class="row">
+      <div class="col">
+        ¿Seguro desea eliminar el registro?
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col">
+
+        <button style="margin-left:15px;" class="btn btn-sm btn-soft-danger float-right" type="submit" >
+          Si, eliminar
+        </button>
+
+        <button type="button" class="btn btn-sm btn-soft-light text-dark float-right" data-dismiss="modal">
+          No, cancelar
+        </button>
+
+      </div>
+    </div>
+
+</form>

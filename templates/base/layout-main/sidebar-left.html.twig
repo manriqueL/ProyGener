@@ -1,0 +1,24 @@
+{% set current_path = app.request.get('_route') %}
+<br>
+
+<!-- Sidebar Nav -->
+<aside id="sidebar" class="js-custom-scroll side-nav">
+  <ul id="sideNav" class="side-nav-menu side-nav-menu-top-level mb-0">
+
+    <br>
+
+    <!-- Dashboards -->
+    {% set opciones = ["inicio"] %}    
+    <li class="side-nav-menu-item {{ current_path in opciones ? "active" : ""  }}">
+      <a class="side-nav-menu-link media align-items-center" href="{{ path("inicio") }}">
+        <span class="side-nav-menu-icon d-flex mr-3">
+          <i class="nova-dashboard"></i>
+        </span>
+        <span class="side-nav-fadeout-on-closed media-body">Resumen</span>
+      </a>
+    </li>
+    <!-- End Dashboards -->
+
+  </ul>
+</aside>
+<!-- End Sidebar Nav -->

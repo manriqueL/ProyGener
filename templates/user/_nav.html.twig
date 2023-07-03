@@ -1,0 +1,26 @@
+<div class="d-flex flex-wrap align-items-center mb-3 d-print-none">
+  <!-- Settings Nav -->
+  <div class="nav-container">
+    <div class="js-btn-list-to-dropdown nav-mobile nav-mobile-left nav-mobile-text-left nav-mobile-shade" data-transform-resolution="1199.98" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-primary">
+
+      <a class="nav-mobile-link btn btn-sm btn-outline-primary border-0 mr-2 {% if active == "edit" %}active{% endif %}" href="{{ path("user_edit", { id: app.request.get("id") }) }}">
+        <i class="nova-user icon-text align-middle mr-2"></i>
+        <span class="align-middle">Datos personales</span>
+      </a>
+
+      <a class="nav-mobile-link btn btn-sm btn-outline-primary border-0 mr-2 {% if active == "permisos" %}active{% endif %}" href="{{ path("user_edit_permisos", { id: app.request.get("id") }) }}">
+        <i class="nova-lock icon-text align-middle mr-2"></i>
+        <span class="align-middle">Permisos</span>
+      </a>
+
+      <a class="nav-mobile-link btn btn-sm btn-outline-primary border-0 mr-2 {% if active == "clave" %}active{% endif %}" href="{{ path("user_edit_clave", { id: app.request.get("id") }) }}">
+        <i class="nova-shield icon-text align-middle mr-2"></i>
+        <span class="align-middle">Contraseña</span>
+      </a>
+    </div>
+  </div>
+  <!-- End Settings Nav -->
+  <a class="link-dark ml-auto" href="{{ path("user_update_estado", { id: app.request.get("id") }) }}">
+    {% if user.isEnabled  %} Suspender {% else %} Activar {% endif %} cuenta
+  </a>
+</div>

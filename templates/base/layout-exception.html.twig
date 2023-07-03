@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+  <body class="layout-user-out d-flex flex-column justify-content-center">
+
+    {% block main %}
+
+      <div class="uomain p-5">
+
+        {% block isologotipo %}
+          <div class="mx-auto text-center isologotipo" style="max-width:420px;">
+            <h2>{% block isologotipo_titulo %}{{ site_name }}{% endblock %}</h2>
+          </div>
+        {% endblock %}
+
+        {% block contenido_principal %}        
+          <div class="container">
+            <h2 class="text-center">
+              {% block contenido_principal_msj %}{% endblock contenido_principal_msj %}
+            </h2>
+            <div class="mx-auto text-center" style="max-width:420px; margin-top:20px;">
+              <a class="btn btn-soft-primary btn-sm mr-2 text-dark" href="{{ path('publico_redireccionar') }}">Ir a la página de inicio</a>
+            </div>
+          </div>               
+        {% endblock contenido_principal %}
+
+        {% block contenido_extra %}        
+          <div class="mx-auto text-center" style="max-width:420px;margin-top:30px;">
+            <div class="mx-auto text-center" style="max-width:420px; margin-top:10px;">
+              Contáctenos en &nbsp;  <a href="mailto:ayudatasa@justicialarioja.gob.ar" > ayudatasa@justicialarioja.gob.ar</a>
+            </div>
+          </div>        
+        {% endblock contenido_extra %}
+
+      </div>
+
+    {% endblock main %}
+
+    <div class="mt-auto text-center footer">
+      © {{ 'now' | date('Y') }} Tribunal Superior de Justicia - Función Judicial de la Provincia de La Rioja
+    </div>
+
+  </body>
+
+{% endblock body %}

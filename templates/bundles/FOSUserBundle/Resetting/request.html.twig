@@ -1,0 +1,41 @@
+{% extends 'base/layout-user-out.html.twig' %}
+
+{% block js_top %}
+  {% if GOOGLE_RECAPTCHA_SITE_KEY is defined and GOOGLE_RECAPTCHA_SITE_KEY is not null %}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  {% endif %}
+{% endblock js_top %}
+
+{% block contenido_principal %}
+
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="form-signin ">
+
+  {{ include ('base/_flash.html.twig') }}
+
+  <div class="form-label-group">
+    <input  id="username" class="form-control" placeholder="email" name="username" required="required" />
+    <label for="username">Ingrese usuario con el que inicia sesión</label>
+  </div>
+
+  {% if GOOGLE_RECAPTCHA_SITE_KEY is defined and GOOGLE_RECAPTCHA_SITE_KEY is not null %}
+    <div class="g-recaptcha" data-sitekey="{{ GOOGLE_RECAPTCHA_SITE_KEY }}"></div>
+  {% endif %}
+  <hr>
+
+  <div>
+      <input type="submit" class="btn btn-lg btn-sm btn-outline-dark btn-block" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" />
+  </div>
+</form>
+
+{% endblock contenido_principal %}
+
+{% block contenido_extra %}
+
+
+  <div class="mx-auto text-center" style="max-width:420px;margin-top:30px;">
+    <div class="mx-auto text-center" style="max-width:420px; margin-top:10px;">
+      Contáctenos en &nbsp;  <a href="mailto:ayudanotificacion@justicialarioja.gob.ar" > ayudanotificacion@justicialarioja.gob.ar</a>
+    </div>
+  </div>
+
+{% endblock contenido_extra %}

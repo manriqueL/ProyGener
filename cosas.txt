@@ -1,0 +1,9 @@
+GULP: 
+    PARA INSTALAR EL COMANDO: npm install pngquant-bin@3.1.1 --save``
+        ANTES DEBEMOS INSTALAR npm "npm install"
+
+GULP SASS:
+    PARA INSTALAR EL COMANDO: gulp sass
+        DEBEMOS TENER INSTALADO Node js y npm
+            LUEGO EJECUTAMOS npm install -g gulp,
+                Y AL ULTIMO: npm install gulp-sass --save-dev

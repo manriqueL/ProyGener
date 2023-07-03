@@ -1,0 +1,88 @@
+<!-- Header -->
+<header class="header header-light bg-white">
+  <nav class="navbar flex-nowrap p-0">
+    <div class="navbar-brand-wrapper col-auto">
+      <!-- Logo For Mobile View -->
+      <a class="navbar-brand navbar-brand-mobile" href="{{ path("inicio") }}">
+        <div class="isologotipo-closed">{{ site_name_short }}</div>
+      </a>
+      <!-- End Logo For Mobile View -->
+
+      <!-- Logo For Desktop View -->
+      <a class="navbar-brand navbar-brand-desktop" style="width: 100%;" href="{{ path("inicio") }}">
+        <div class="side-nav-hide-on-closed isologotipo">
+          {{ site_name }}
+        </div>
+        <div class="side-nav-show-on-closed isologotipo-closed">
+          {{ site_name_short }}
+        </div>
+      </a>
+      <!-- End Logo For Desktop View -->
+    </div>
+
+    <div class="header-content col px-md-3 px-md-3">
+      <div class="d-flex align-items-center">
+        <!-- Side Nav Toggle -->
+        <a class="js-side-nav header-invoker mr-md-2" href="#"
+           data-close-invoker="#sidebarClose"
+           data-target="#sidebar"
+           data-target-wrapper="body">
+          <i class="nova-align-left"></i>
+        </a>
+        <!-- End Side Nav Toggle -->
+
+
+        <!-- Header Dropdown -->
+        <div class="dropdown ml-auto"></div>
+        <!-- End Header Dropdown -->
+
+        <!-- Header Dropdown -->
+        <div class="dropdown ml-2"></div>
+        <!-- End Header Dropdown -->
+
+
+        <!-- Header User Dropdown -->
+        <div class="dropdown mx-3">
+          <a id="profileMenuInvoker" class="header-complex-invoker" href="#" aria-controls="profileMenu" aria-haspopup="true" aria-expanded="false"
+             data-unfold-event="click"
+             data-unfold-target="#profileMenu"
+             data-unfold-type="css-animation"
+             data-unfold-duration="300"
+             data-unfold-animation-in="fadeIn"
+             data-unfold-animation-out="fadeOut">
+
+            <span class="d-none d-md-block text-right" style="min-width:150px;">{{ app.user.name~", "~app.user.lastname }}</span>
+            <i class="nova-angle-down d-none d-md-block ml-2"></i>
+          </a>
+
+          <ul id="profileMenu" class="unfold unfold-user unfold-light unfold-top unfold-centered position-absolute pt-2 pb-1 mt-4" aria-labelledby="profileMenuInvoker">
+            <li class="unfold-item">
+              <a class="unfold-link d-flex align-items-center text-nowrap" href="{{ path("fos_user_profile_show") }}">
+                <span class="unfold-item-icon mr-3">
+                  <i class="nova-user"></i>
+                </span>
+                Mi cuenta
+              </a>
+            </li>
+            <li class="unfold-item">
+              <a class="unfold-link d-flex align-items-center text-nowrap" href="{{ path("fos_user_change_password") }}">
+                <span class="unfold-item-icon mr-3">
+                  <i class="nova-exchange-vertical"></i>
+                </span>
+                Contraseña
+              </a>
+            </li>
+          </ul>      
+        </div>
+        <!-- End Header User Dropdown -->
+
+        <a class="header-complex-invoker" title="Salir del sistema" href="{{ path("fos_user_security_logout") }}">
+          <i class="nova-power-off"></i>&nbsp;
+          SALIR
+        </a>     
+
+      </div>
+    </div>
+  </nav>
+</header>
+<!-- End Header -->

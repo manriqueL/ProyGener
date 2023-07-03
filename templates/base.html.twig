@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+          {% block title %}Tribunal Superior de Justicia - La Rioja{% endblock %}
+        </title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+        <link rel="shortcut icon" href="{{ asset("favicon.ico") }}">
+
+        {% block stylesheets %}
+
+          <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+          <link href="{{ asset("build-tema/dist-nova/vendor/nova-icons/nova-icons.css") }}" rel="stylesheet">
+
+          <!-- CSS Implementing Libraries -->
+          <link rel="stylesheet" href="{{ asset("build-tema/dist-nova/vendor/animate.css/animate.min.css") }}">
+          <link rel="stylesheet" href="{{ asset("build-tema/dist-nova/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css") }}">
+          <link rel="stylesheet" href="{{ asset("build-tema/dist-nova/vendor/flatpickr/dist/flatpickr.min.css") }}">
+          <link rel="stylesheet" href="{{ asset("build-tema/dist-nova/vendor/select2/dist/css/select2.min.css") }}">
+          <link rel="stylesheet" href="{{ asset("build-tema/dist-nova/vendor/chartist/dist/chartist.min.css") }}">
+          <link rel="stylesheet" href="{{ asset("build-tema/dist-nova/vendor/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.css") }}">
+          <link rel="stylesheet" href="{{ asset("build-tema/dist-nova/vendor/jquery-shorten/src/jquery.shorten.css") }}">
+
+          <!-- CSS Nova Template -->
+          <link href="{{ asset("build-tema/dist-nova/css/theme.min.css") }}" type="text/css" rel="stylesheet" />
+
+        {% endblock %}
+
+        {% block js_top %}{% endblock %}
+
+    </head>
+
+    {% block body %}
+
+    {% endblock %}
+</html>

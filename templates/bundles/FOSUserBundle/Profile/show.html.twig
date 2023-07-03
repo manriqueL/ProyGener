@@ -1,0 +1,62 @@
+{% extends 'base/layout-main.html.twig' %}
+
+{% block title %}Su Cuenta - {{ parent() }}{% endblock %}
+
+{% block content_center %}
+
+    <div class="row align-items-center mb-3 mb-xl-5">
+      <div class="col-md mb-2 mb-md-0">
+        <h1 class="h3 mb-0">Mi cuenta</h1>
+      </div>
+      <div class="col-md ml-md-auto text-md-right">
+
+        <a class="btn btn-soft-primary btn-sm float-right" style="margin-right:15px;" href="{{ path('fos_user_profile_edit') }}">
+          <i class="nova-pencil icon-text align-middle mr-1"></i>
+          Editar
+        </a>
+
+        <a class="btn btn-soft-primary btn-sm float-right" style="margin-right:15px;" href="{{ path('fos_user_change_password') }}">
+          <i class="nova-shield icon-text align-middle mr-1"></i>
+          Editar Contraseña
+        </a>
+
+      </div>
+    </div>
+
+    {{ include('base/_flash.html.twig') }}
+    
+    <div class="card">
+      <div class="card-body" style="padding:0;">
+
+        <table class="table ">
+        		<tbody>
+        				<tr>
+        						<th class="text-right" width="150">#</th>
+        						<td>{{ user.id }}</td>
+        				</tr>
+        				<tr>
+        						<th class="text-right">Nombre, Apellido</th>
+        						<td>{{ user.name }}, {{ user.lastname }}</td>
+        				</tr>
+                <tr>
+        						<th class="text-right">Username</th>
+        						<td>{{ user.username }}</td>
+        				</tr>
+                <tr>
+        						<th class="text-right">Email</th>
+        						<td>{{ user.email }}</td>
+        				</tr>
+                <tr>
+        						<th class="text-right">Teléfono</th>
+        						<td>{{ user.telephone }}</td>
+        				</tr>
+                <tr>
+        						<th class="text-right">Celular</th>
+        						<td>{{ user.cellphone }}</td>
+        				</tr>
+        		</tbody>
+        </table>
+
+			</div>
+		</div>
+{% endblock content_center %}

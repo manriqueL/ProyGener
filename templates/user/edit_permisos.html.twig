@@ -1,0 +1,55 @@
+{% extends 'base/layout-main.html.twig' %}
+
+{% block title %}Cambiar permisos - Editar usuario - {{ parent() }}{% endblock %}
+
+{% block content_center %}
+
+    <div class="row align-items-center mb-3 mb-xl-5">
+      <div class="col-md mb-2 mb-md-0">
+        <h1 class="h3 mb-0">
+          {% if user.enabled %}
+            <span class="badge badge-success" title="Usuario activo">A</span>
+          {% else %}
+            <span class="badge badge-warning" title="Usuario suspendido">S</span>
+          {% endif %}
+          Editar
+          <u style="color:#222;">{{ user.username }}</u>
+        </h1>
+      </div>
+      <div class="col-md ml-md-auto text-md-right">
+
+        <button class="btn btn-sm btn-soft-danger float-right" type="button" data-toggle="modal" data-target="#modalContent">
+          <i class="nova-trash icon-text align-middle mr-1"></i> &nbsp; Eliminar
+        </button>
+
+        <a target="new" class="btn btn-soft-light text-dark btn-sm float-right" style="margin-right:15px;" href="{{ path('log_index') }}?filtro[objectClass]=App\\Entity\\User&filtro[objectId]={{ user.id }}">
+          <i class="nova-layers-alt icon-text align-middle mr-1"></i> &nbsp; Log
+        </a>
+
+        <a class="btn btn-soft-light text-dark btn-sm float-right" style="margin-right:15px;" href="{{ path('user_index') }}">
+          <i class="nova-angle-left icon-text align-middle mr-1"></i> &nbsp; Volver al listado
+        </a>
+
+      </div>
+    </div>
+
+    {{ include('base/_flash.html.twig') }}
+    {{ include ("user/_nav.html.twig", { "active": "permisos" }) }}
+
+    <div class="card">
+      <div class="card-body">
+        {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block modal_content %}
+  <div id="modalContent" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        {{ include('user/_delete_form.html.twig', {"userId" : user.id }) }}
+      </div>
+    </div>
+  </div>
+{% endblock modal_content %}

@@ -1,0 +1,25 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% block subject %}
+  {%- autoescape false -%}
+    Solicitud para restablecer Contraseña
+  {%- endautoescape -%}
+{% endblock %}
+
+{% block body_text %}
+  {% autoescape false %}
+
+    ¡Hola {{ user.name}}, {{ user.lastname }}!
+
+    Si usted a solicitado restablecer la contraseña de su usuario {{ user.username }}, siga las instrucciones que se indican abajo.
+    En caso de que usted no haya inicio el proceso para restablecer la contraseña no tenga en cuenta lo que se indica en este email.
+
+    Para restablecer tu contraseña, por favor visita {{ confirmationUrl }}
+
+    Atentamente
+    Área Informática del Tribunal Superior de Justicia
+    Provincia de La Rioja
+
+  {% endautoescape %}
+{% endblock %}
+
+{% block body_html %}{% endblock %}

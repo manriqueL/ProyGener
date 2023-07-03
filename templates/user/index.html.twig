@@ -1,0 +1,131 @@
+{% extends 'base/layout-main.html.twig' %}
+{% block title %}User - {{ parent() }}{% endblock %}
+
+{% block content_center %}
+
+    <div class="row align-items-center mb-3 mb-xl-5">
+      <div class="col-md mb-2 mb-md-0">
+        <h1 class="h3 mb-0">Usuarios</h1>
+      </div>
+      <div class="col-md ml-md-auto text-md-right">
+        <a class="btn btn-soft-primary btn-sm" href="{{ path('user_new') }}">
+          <i class="nova-plus align-middle mr-1"></i> &nbsp; Agregar
+        </a>
+      </div>
+    </div>
+
+    {{ include('base/_flash.html.twig') }}
+
+    {{ include('user/_filtro.html.twig', {'form': formFiltro}) }}
+
+    <div class="card mb-3 mb-md-4">
+      <div style="padding:0px 0px;" class="card-body">
+        <div class="table-responsive-md">
+          <table class="table table-sm table-shadow table-row-click bg-white mb-5">
+
+            <thead>
+              <tr>
+                <th scope="col" class="font-weight-semi-bold border-top-0 py-2">
+                  &nbsp;
+                </th>
+                <th scope="col" class="font-weight-semi-bold border-top-0 py-2">
+                  <div class="d-flex justify-content-between align-items-center">
+                    {{ knp_pagination_sortable(pagination, '#', 'e.id') }}
+                  </div>
+                </th>
+
+                <th scope="col" class="font-weight-semi-bold border-top-0 py-2">
+                  <div class="d-flex justify-content-between align-items-center">
+                    {{ knp_pagination_sortable(pagination, 'Nombre', 'e.name') }}
+                  </div>
+                </th>
+
+
+                <th scope="col" class="font-weight-semi-bold border-top-0 py-2">
+                  <div class="d-flex justify-content-between align-items-center">
+                    {{ knp_pagination_sortable(pagination, 'Apellido', 'e.lastName') }}
+                  </div>
+                </th>
+
+                <th scope="col" class="font-weight-semi-bold border-top-0 py-2">
+                  <div class="d-flex justify-content-between align-items-center">
+                    {{ knp_pagination_sortable(pagination, 'Usuario', 'e.username') }}
+                  </div>
+                </th>
+
+                <th scope="col" class="font-weight-semi-bold border-top-0 py-2">
+                  <div class="d-flex justify-content-between align-items-center">
+                    {{ knp_pagination_sortable(pagination, 'Email', 'e.email') }}
+                  </div>
+                </th>
+
+                <th scope="col" class="font-weight-semi-bold border-top-0 py-2">
+                  <div class="d-flex justify-content-between align-items-center">
+                    {{ knp_pagination_sortable(pagination, 'Último acceso', 'e.lastLogin') }}
+                  </div>
+                </th>
+
+                <th></th>
+              </tr>
+
+            </thead>
+            <tbody>
+            {% for user in pagination %}
+                <tr>
+                  <td class="text-center">
+                    {% if user.enabled %}
+                      <span class="badge badge-success" title="Usuario activo">A</span>
+                    {% else %}
+                      <span class="badge badge-warning" title="Usuario suspendido">S</span>
+                    {% endif %}
+                  </td>
+                  <td onClick="window.location='{{ path('user_edit', {'id': user.id}) }}'">{{ user.id }}</td>
+                  <td onClick="window.location='{{ path('user_edit', {'id': user.id}) }}'">{{ user.name }}</td>
+                  <td onClick="window.location='{{ path('user_edit', {'id': user.id}) }}'">{{ user.lastName }}</td>
+                  <td onClick="window.location='{{ path('user_edit', {'id': user.id}) }}'">{{ user.username }}</td>
+                  <td onClick="window.location='{{ path('user_edit', {'id': user.id}) }}'">{{ user.email }}</td>
+                  <td onClick="window.location='{{ path('user_edit', {'id': user.id}) }}'">{{ user.lastLogin ? user.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
+                  <td width="80" class="text-right">
+                    <a class="m-0 p-1 btn btn-sm" title="Editar registro" href="{{ path('user_edit', {'id': user.id}) }}">
+                      <i class="nova-pencil unfold-item-icon"></i>
+                    </a>
+                    <a class="m-0 p-1 btn btn-sm" title="Eliminar registro" href="javascript:void(0)" data-toggle="modal" data-target="#modalContent{{ user.id }}">
+                      <i class="nova-trash icon-text align-middle"></i>
+                    </a>
+                  </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="17">No se encontraron registros</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+      <div style="padding:0px;" class="card-footer p-2 d-block d-md-flex justify-content-between">
+        <div class="d-flex mb-2 mb-md-0 d-inline-flex">
+          {{ pagination.getTotalItemCount }} {{ pagination.getTotalItemCount == 1 ? " registro" : " registros" }} en total
+        </div>
+        <div class="d-inline-flex align-items-end" >
+          {{ knp_pagination_render(pagination) }}
+        </div>
+      </div>
+
+    </div>
+
+{% endblock %}
+
+{% block modal_content %}
+  {% for user in pagination %}
+    <div id="modalContent{{ user.id }}" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          {{ include('user/_delete_form.html.twig', {"userId" : user.id }) }}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock modal_content %}

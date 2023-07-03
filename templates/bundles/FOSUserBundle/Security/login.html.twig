@@ -1,0 +1,58 @@
+{% extends 'base/layout-user-out.html.twig' %}
+
+{% block js_top %}
+    {% if GOOGLE_RECAPTCHA_SITE_KEY is defined and GOOGLE_RECAPTCHA_SITE_KEY is not null %}
+      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    {% endif %}
+{% endblock js_top %}
+
+{% block contenido_principal %}
+
+  <form class="form-signin" action="{{ path("fos_user_security_check") }}" method="post">
+
+    {% if error %}
+      <div class="alert alert-danger">
+          {{ error.messageKey|trans(error.messageData, 'security') }}
+      </div>
+    {% endif %}
+
+    <div class="form-label-group">
+        <input type="text" id="username" name="_username" class="form-control" placeholder="Usuario" value="{{ last_username }}" required="required" />
+      <label for="inputEmail">Usuario</label>
+    </div>
+
+    <div class="form-label-group">
+      <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name="_password" required="required" />
+        <label for="inputPassword">Contraseña</label>
+    </div>
+
+    {% if GOOGLE_RECAPTCHA_SITE_KEY is defined and GOOGLE_RECAPTCHA_SITE_KEY is not null %}
+      <div class="g-recaptcha" data-sitekey="{{ GOOGLE_RECAPTCHA_SITE_KEY }}"></div>
+    {% endif %}
+
+    <hr>
+    <button class="btn btn-lg btn-sm btn-outline-dark btn-block" type="submit">INICIAR SESIÓN</button>
+    <hr>
+
+    <div class="form-check position-relative mb-2 ml-3">
+      <input type="checkbox" class="form-check-input d-none" id="remember_me" name="_remember_me">
+      <label class="checkbox checkbox-xxs form-check-label ml-1" for="remember_me" data-icon="&#xe936">recordar datos de acceso</label>
+    </div>
+
+  </form>
+
+{% endblock contenido_principal %}
+
+{% block contenido_extra %}
+
+  <div class="mx-auto text-center" style="max-width:420px; margin-top:30px;">
+   ¿Olvidó su contraseña? &nbsp;  <a href="{{ path("fos_user_resetting_request") }}">Haga click aquí</a>
+  </div>
+
+  <div class="mx-auto text-center" style="max-width:420px;margin-top:10px;">
+    <div class="mx-auto text-center" style="max-width:420px; margin-top:10px;">
+      Contáctenos en &nbsp;  <a href="mailto:ayudanotificacion@justicialarioja.gob.ar" > ayudanotificacion@justicialarioja.gob.ar</a>
+    </div>
+  </div>
+
+{% endblock contenido_extra %}

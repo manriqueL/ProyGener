@@ -1,0 +1,67 @@
+{% extends 'base/layout-main.html.twig' %}
+
+{% block title %}Log - {{ parent() }}{% endblock %}
+
+{% block content_center %}
+
+    <div class="row align-items-center mb-3 mb-xl-5">
+      <div class="col-md mb-2 mb-md-0">
+        <h1 class="h3 mb-0">Log</h1>
+      </div>
+      <div class="col-md ml-md-auto text-md-right">
+
+        <a class="btn btn-soft-light text-dark btn-sm float-right" style="margin-right:15px;" href="{{ path('log_index') }}">
+          <i class="nova-angle-left icon-text align-middle mr-1"></i> &nbsp; Volver al listado
+        </a>
+
+      </div>
+    </div>
+
+    {{ include('base/_flash.html.twig') }}
+
+    <div class="card">
+      <div class="card-body">
+
+        <table class="table">
+
+          <tbody>
+                <tr>
+                  <th  width="150" class="text-right">Id</th>
+                  <td>{{ log.id }}</td>
+              </tr>
+                <tr>
+                  <th  width="150" class="text-right">Action</th>
+                  <td>{{ log.action }}</td>
+              </tr>
+                <tr>
+                  <th  width="150" class="text-right">LoggedAt</th>
+                  <td>{{ log.loggedAt ? log.loggedAt|date('Y-m-d H:i:s') : '' }}</td>
+              </tr>
+                <tr>
+                  <th  width="150" class="text-right">ObjectId</th>
+                  <td>{{ log.objectId }}</td>
+              </tr>
+                <tr>
+                  <th  width="150" class="text-right">ObjectClass</th>
+                  <td>{{ log.objectClass }}</td>
+              </tr>
+                <tr>
+                  <th  width="150" class="text-right">Version</th>
+                  <td>{{ log.version }}</td>
+              </tr>
+                <tr>
+                  <th  width="150" class="text-right">Data</th>
+                  <td>{{ log.data | json_encode }}</td>
+              </tr>
+                <tr>
+                  <th  width="150" class="text-right">Username</th>
+                  <td>{{ log.username }}</td>
+              </tr>
+            </tbody>
+
+        </table>
+
+      </div>
+    </div>
+
+{% endblock %}

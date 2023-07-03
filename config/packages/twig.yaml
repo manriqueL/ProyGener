@@ -1,0 +1,10 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    form_themes: ['form/bootstrap_4_horizontal_layout.html.twig']
+
+    globals:
+        GOOGLE_RECAPTCHA_SITE_KEY: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
+        site_name: '%env(site_name)%'
+        site_name_short: '%env(site_name_short)%'

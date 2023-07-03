@@ -1,0 +1,121 @@
+{% extends 'base/layout-main.html.twig' %}
+{% block title %}Log - {{ parent() }}{% endblock %}
+
+{% block content_center %}
+
+    <div class="row align-items-center mb-3 mb-xl-5">
+      <div class="col-md mb-2 mb-md-0">
+        <h1 class="h3 mb-0">Log de sistema</h1>
+      </div>
+      <div class="col-md ml-md-auto text-md-right"></div>
+    </div>
+
+    {{ include('base/_flash.html.twig') }}
+    {{ include('log/_filtro.html.twig', {'form': formFiltro}) }}
+
+    <div class="card mb-3 mb-md-4">
+      <div style="padding:0px 0px;" class="card-body">
+        <div class="table-responsive-md">
+          <table class="table table-sm table-row-click bg-white mb-5">
+
+            <thead>
+                <tr>
+                  <th scope="col" class="font-weight-semi-bold border-top-0 py-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                      {{ knp_pagination_sortable(pagination, 'Id', 'e.id') }}
+                    </div>
+                  </th>
+
+                  <th scope="col" class="font-weight-semi-bold border-top-0 py-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                      {{ knp_pagination_sortable(pagination, 'Action', 'e.action') }}
+                    </div>
+                  </th>
+
+                  <th scope="col" class="font-weight-semi-bold border-top-0 py-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                      {{ knp_pagination_sortable(pagination, 'LoggedAt', 'e.loggedAt') }}
+                    </div>
+                  </th>
+
+                  <th scope="col" class="font-weight-semi-bold border-top-0 py-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                      {{ knp_pagination_sortable(pagination, 'ObjectId', 'e.objectId') }}
+                    </div>
+                  </th>
+
+                  <th scope="col" class="font-weight-semi-bold border-top-0 py-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                      {{ knp_pagination_sortable(pagination, 'ObjectClass', 'e.objectClass') }}
+                    </div>
+                  </th>
+
+                  <th scope="col" class="font-weight-semi-bold border-top-0 py-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                      {{ knp_pagination_sortable(pagination, 'Username', 'e.username') }}
+                    </div>
+                  </th>
+
+                  <th style="width:90px" scope="col" class="font-weight-semi-bold border-top-0 py-2"></th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for log in pagination %}
+            <tr>
+                <td onClick="window.location='{{ path('log_show', {'id': log.id}) }}'">{{ log.id }}</td>
+                <td onClick="window.location='{{ path('log_show', {'id': log.id}) }}'">{{ log.action }}</td>
+                <td onClick="window.location='{{ path('log_show', {'id': log.id}) }}'">{{ log.loggedAt ? log.loggedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td onClick="window.location='{{ path('log_show', {'id': log.id}) }}'">{{ log.objectId }}</td>
+                <td onClick="window.location='{{ path('log_show', {'id': log.id}) }}'">{{ log.objectClass }}</td>
+                <td onClick="window.location='{{ path('log_show', {'id': log.id}) }}'">{{ log.username }}</td>
+
+                <td>
+
+                    <div class="position-relative">
+                      <a id="dropDown11Invoker" class="link-dark d-flex active" href="#" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                        <i class="nova-more-alt unfold-item-icon mr-3"></i>
+                      </a>
+
+                      <ul class="unfold unfold-light dropdown-menu-right dropdown-menu px-0 py-3 mt-1" aria-labelledby="dropDown11Invoker" style="min-width: 150px; position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 33px, 0px);" x-placement="bottom-start">
+
+                        <li class="unfold-item">
+                          <a class="unfold-link media align-items-center text-nowrap" href="{{ path('log_show', {'id': log.id}) }}">
+                            <i class="nova-eye unfold-item-icon mr-3"></i>
+                            <span class="media-body">Ver</span>
+                          </a>
+                        </li>
+
+                      </ul>
+                    </div>
+
+                </td>
+            </tr>
+            <tr>
+              <td style="border:none;"></td>
+              <td colspan="6" style="border:none; background-color:#fff; color:#000; padding:2px;">
+                {{ log.data | json_encode }}
+              </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">No se encontraron registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <div style="padding:0px;" class="card-footer p-2 d-block d-md-flex justify-content-between">
+    <div class="d-flex mb-2 mb-md-0 d-inline-flex">
+      {{ pagination.getTotalItemCount }} {{ pagination.getTotalItemCount == 1 ? " registro" : " registros" }} en total
+    </div>
+    <div class="d-inline-flex align-items-end" >
+      {{ knp_pagination_render(pagination) }}
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

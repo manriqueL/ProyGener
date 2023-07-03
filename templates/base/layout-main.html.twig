@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+  <body class="layout-main has-sidebar has-fixed-sidebar-and-header side-nav-full-mode" >
+
+    {% include 'base/layout-main/header.html.twig' %}
+
+    {% block main %}
+      <main class="main">
+
+        {% block sidebar_left %}
+          {% include 'base/layout-main/sidebar-left.html.twig' %}
+        {% endblock %}
+
+        {% block content %}
+          <div class="content">
+            <div class="py-4 px-3 px-md-4">
+              {% block content_center %}{% endblock %}
+            </div>
+            <!-- Footer -->
+            <footer class="small bg-white p-3 px-md-4 mt-auto d-print-none">
+              <div class="row justify-content-between">
+                {% block content_footer %}
+                  {% include 'base/layout-main/footer.html.twig' %}
+                {% endblock %}
+              </div>
+            </footer>
+          </div>
+        {% endblock %}
+
+      </main>
+    {% endblock %}
+
+    {% block js_bottom %}
+
+    <!-- JS Global Compulsory -->
+      <script src="{{ asset("build-tema/dist-nova/vendor/jquery/dist/jquery.js") }}"></script>
+      <script src="{{ asset("build-tema/dist-nova/vendor/jquery-migrate/dist/jquery-migrate.js") }}"></script>
+      <script src="{{ asset("build-tema/dist-nova/vendor/popper.js/dist/umd/popper.js") }}"></script>
+      <script src="{{ asset("build-tema/dist-nova/vendor/bootstrap/dist/js/bootstrap.js") }}"></script>
+
+      {% block js_bottom_libreria %}
+        <!-- JS Implementing Libraries -->
+        <script src="{{ asset("build-tema/dist-nova/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js") }}"></script>
+        <script src="{{ asset("build-tema/dist-nova/vendor/chartist/dist/chartist.js") }}"></script>
+        <script src="{{ asset("build-tema/dist-nova/vendor/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.js") }}"></script>
+        <script src="{{ asset("build-tema/dist-nova/vendor/resize-sensor/dist/resizeSensor.js") }}"></script>
+        <script src="{{ asset("build-tema/dist-nova/vendor/jquery-shorten/src/jquery.shorten.js") }}"></script>
+        {#<script src="{{ asset("build-tema/dist-nova/vendor/flatpickr/dist/flatpickr.js") }}"></script>#}
+        <script src="{{ asset("build-tema/dist-nova/vendor/select2/dist/js/select2.full.js") }}"></script>
+        {#<script src="{{ asset("build-tema/dist-nova/vendor/chartist-bar-labels/src/scripts/chartist-bar-labels") }}"></script>#}
+        {#<script src="{{ asset("build-tema/dist-nova/vendor/datatables/media/js/jquery.dataTables.js") }}"></script>#}
+        {#<script src="{{ asset("build-tema/dist-nova/vendor/datatables/media/js/dataTables.select.js") }}"></script>#}
+      {% endblock %}
+
+      {% block js_bottom_vendor %}
+        <!-- JS Nova -->
+        <script src="{{ asset("build-tema/dist-nova/js/hs.core.js") }}"></script>
+        <script src="{{ asset("build-tema/dist-nova/js/components/hs.malihu-scrollbar.js") }}"></script>
+        <script src="{{ asset("build-tema/dist-nova/js/components/hs.side-nav.js") }}"></script>
+        <script src="{{ asset("build-tema/dist-nova/js/components/hs.unfold.js") }}"></script>
+        <script src="{{ asset("build-tema/dist-nova/js/components/hs.select2.js") }}"></script>
+        <script src="{{ asset("build-tema/dist-nova/js/theme-custom.js") }}"></script>
+      {% endblock %}
+
+      {% block js_bottom_script %}
+        <!-- JS Libraries Init. -->
+        <script type="text/javascript" >
+          $(document).on('ready', function () {
+
+            // initialization of custom scroll
+            $.HSCore.components.HSMalihuScrollBar.init($('.js-custom-scroll'));
+
+            // initialization of sidebar navigation component
+            $.HSCore.components.HSSideNav.init('.js-side-nav');
+
+            // initialization of dropdown component
+            $.HSCore.components.HSUnfold.init(
+              $('[data-unfold-target]'),
+              {
+                unfoldHideOnScroll: false,
+                afterOpen: function () {}
+              }
+            );
+
+            // inicializar los select2 que tengan como atributo data-group="select2"
+            $.HSCore.components.HSSelect2.init('[data-select2-load="auto"]');
+
+          });
+
+        </script>
+
+      {% endblock %}
+
+
+    {% endblock %}
+
+    {% block modal_content %}{% endblock modal_content %}
+
+
+
+  </body>
+
+{% endblock %}

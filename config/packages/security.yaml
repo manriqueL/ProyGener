@@ -1,0 +1,34 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_INVITADO: ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_EMPLEADO, ROLE_AUDITOR]
+
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        main:
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+            pattern: ^/
+            simple_form:
+                authenticator: App\Security\UsuarioAuthenticator
+                always_use_default_target_path: true
+                default_target_path: publico_redireccionar
+                provider: fos_userbundle
+                #csrf_provider: form.csrf_provider
+            logout:       true
+            anonymous:    true
+
+    access_control:
+        - { path: ^/admin, role: ROLE_USER }        
+        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting/*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }        

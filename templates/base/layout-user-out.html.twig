@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+  <body class="layout-user-out d-flex flex-column justify-content-center">
+
+    {% block main %}
+
+      <div class="uomain p-5">
+
+        {% block isologotipo %}
+          <div class="mx-auto text-center isologotipo" style="max-width:420px;">
+            <h2>{% block isologotipo_titulo %}{{ site_name }}{% endblock %}</h2>
+          </div>
+        {% endblock %}
+
+        {% block contenido_principal %}{% endblock contenido_principal %}
+
+        {% block contenido_extra %}{% endblock contenido_extra %}
+
+      </div>
+
+    {% endblock main %}
+
+    <div class="mt-auto text-center footer">
+      © {{ 'now' | date('Y') }} Tribunal Superior de Justicia - Función Judicial de la Provincia de La Rioja
+    </div>
+
+  </body>
+
+{% endblock body %}

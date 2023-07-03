@@ -1,0 +1,22 @@
+{% if form is defined and form|length > 0 %}
+  <div class="filtro accordion accordion-stacked bg-white" style="padding:0px;">
+    <header id="heading4" class="accordion-header collapsed {{ app.request.get("filtro") ? "activo" : "" }}" data-toggle="collapse" data-target="#collapse-filtro">
+      <i class="nova-search accordion-icon icon-text mr-2"></i>
+      <h5 class="mb-0">{{ app.request.get("filtro") ? "Resultados de búsqueda" : "Buscar" }}</h5>
+      <i class="accordion-control nova-angle-down icon-text ml-auto"></i>
+    </header>
+    <div id="collapse-filtro" class="collapse" style="border-bottom:solid 1px #ccc;">
+      <div class="card card-body">
+        {{ form_start(form, {attr: {"novalidate":"novalidate"}}) }}
+            {{ form_widget(form) }}
+            <div class="row">
+              <div class="col">
+                <button class="float-right btn btn-sm btn-light text-dark" style="margin-left:15px;">Buscar</button>
+                <a class="btn btn-sm float-right" href="{{ path('log_index') }}">Cancelar</a>
+              </div>
+            </div>
+        {{ form_end(form) }}
+      </div>
+    </div>
+  </div>
+{% endif %}
